@@ -1,0 +1,34 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+bool check(long n){
+    int mu = 0;
+    int cnt = 0;
+    for(long long i = 2; i<= sqrt(n); i++) {
+        if (n % i == 0){
+            cnt++;
+            mu = 0;
+            while (n % i == 0){
+                n /= i;
+                mu++;
+            }
+            if(mu<2) return false;
+        }
+    }
+    if (n > 1) return false;
+    if (cnt == 0) return false;
+    return true;
+}
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */  
+    long long a, b;
+    cin >> a >> b;
+    for (long long i = a; i <= b; i++){
+        if(check(i)) cout << i << " ";
+    }
+    return 0 ;
+}
